@@ -17,8 +17,13 @@ if (schedule === "weekly") {
   nextWithdrawal.setMonth(now.getMonth() + 1);
 }
 
-//Check if withdrawal is early and apply penalty if necessary
+//Check if balance is sufficient for withdrawal
+if (balance < 50) {
+  console.log("Error: Balance is less than $50. Cannot withdraw.");
+}
+
 if (now < nextWithdrawal) {
+  //Check if withdrawal is early and apply penalty if necessary
   const penalty = amount * 0.02;
   balance -= penalty;
   console.log(`Withdrawal is early. A penalty of ${penalty} will be applied`);
